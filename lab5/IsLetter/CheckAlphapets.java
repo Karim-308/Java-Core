@@ -1,12 +1,14 @@
 package lab5.IsLetter;
 
-
+import java.util.Scanner;
 import java.util.function.Function;
 
 public class CheckAlphapets  implements Function<String , Boolean>{
     
     public static void main(String[] args) {
-            String stirngToCheck = System.console().readLine("Enter a string: ");
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter a string: ");
+            String stirngToCheck = scanner.nextLine();
             CheckAlphapets checker = new CheckAlphapets();
 
             if (checker.apply(stirngToCheck)){
@@ -15,6 +17,7 @@ public class CheckAlphapets  implements Function<String , Boolean>{
             else {
                 System.out.println("The string you entered is not all Alphapetical");
             }
+            scanner.close();
 
     }
     
@@ -30,7 +33,3 @@ public class CheckAlphapets  implements Function<String , Boolean>{
 
 
 }
-
-
-
-

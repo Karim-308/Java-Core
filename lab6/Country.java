@@ -100,7 +100,7 @@ public class Country {
 	}
 
 	@Override
-	public boolean equals(Object obj) { // TODO why do i need this 
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -122,7 +122,7 @@ public class Country {
 //				+ population + "]";
 //	}
 	
-	public String toString() { // TODO why do i need this 
+	public String toString() {
 		return  name + ", " + population ;
 	}
 }

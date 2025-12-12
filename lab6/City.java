@@ -55,7 +55,7 @@ public class City {
 	}
 
 	@Override
-	public boolean equals(Object obj) { // TODO why do i need this and where is it being used
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -74,7 +74,7 @@ public class City {
 //				+ population + ", countryCode=" + countryCode + "]";
 //	};
 	@Override
-	public String toString() { // TODO why do i need this 
+	public String toString() {
 		return  name + ", "+ population + ", " + countryCode;
 	};
 }

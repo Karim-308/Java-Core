@@ -27,8 +27,10 @@ public class Complex <T extends Number> {
     }
 
     public Complex<Double> multiply (Complex<T > Other ){
-        double r = this.real.doubleValue() * Other.getReal().doubleValue();
-        double i = this.imag.doubleValue() * Other.getImag().doubleValue();
+        double r = (this.real.doubleValue() * Other.getReal().doubleValue())
+                - (this.imag.doubleValue() * Other.getImag().doubleValue());
+        double i = (this.real.doubleValue() * Other.getImag().doubleValue())
+                + (this.imag.doubleValue() * Other.getReal().doubleValue());
         return new Complex<Double>(r, i);
 
     }
