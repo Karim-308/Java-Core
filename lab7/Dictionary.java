@@ -30,9 +30,8 @@ public class Dictionary {
     }
 
     public void print() {
-        Set<Character> lettersSet = dictionary.keySet();
 
-        for (char c : lettersSet) {
+        for (char c : dictionary.keySet()) {
             System.out.println("Character " + c +"\n "+ dictionary.get(c));
         }
     }
