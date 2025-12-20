@@ -5,7 +5,7 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BouncingClock extends JPanel {
+public class BouncingClock extends JPanel implements Runnable {
     
     private int x = 100;
     private int y = 100;
@@ -31,23 +31,32 @@ public class BouncingClock extends JPanel {
     }
     
     public void updatePosition() {
-       
         x += deltaX;
         y += deltaY;
-        
         
         int textWidth = 350;  
         int textHeight = 20;
         
-        // Bounce off edges
         if (x <= 0 || x + textWidth >= getWidth()) {
-            deltaX = -deltaX;  // reverse horizontal 
+            deltaX = -deltaX;
         }
         
         if (y <= textHeight || y >= getHeight()) {
-            deltaY = -deltaY;  // reverse vertical
+            deltaY = -deltaY;
         }
         repaint();
+    }
+    
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(50);
+                updatePosition();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     public static void main(String[] args) {
@@ -59,17 +68,7 @@ public class BouncingClock extends JPanel {
         frame.pack();
         frame.setVisible(true);
         
-        Thread animationThread = new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(50); 
-                    clock.updatePosition();  //  Update position
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        
-        animationThread.start(); 
+        Thread animationThread = new Thread(clock);
+        animationThread.start();
     }
 }
