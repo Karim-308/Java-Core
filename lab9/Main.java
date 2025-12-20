@@ -97,5 +97,88 @@ public class Main {
         System.out.println();
         library.displayAllClients();
 
+        try {
+            // updating a book
+            System.out.println();
+            Book NewBook = new Book(1, "C++ NEW", 10, "New C++Publisher", "New Author", 1000999L);
+            library.updateItem(NewBook);
+            System.out.println("Updated book with ID 1:");
+            System.out.println(library.findItemById(1).getItemDetails());
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            // updating a cleint
+            System.out.println();
+            Client updatedClient = new Client(2, "Lobna Updated", "lobna.new@email.com");
+            library.updateClient(updatedClient);
+            System.out.println("Updated client with ID 2:");
+            System.out.println(library.findClientById(2).getClientDetails());
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            // deleting a book
+            System.out.println();
+            System.out.println("Before delete:");
+            library.displayAllItems();
+
+            library.removeItem(5);
+
+            System.out.println("After deleting item ID 5:");
+            library.displayAllItems();
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            // deleting a client
+            System.out.println();
+            System.out.println("Before delete:");
+            library.displayAllClients();
+
+            library.removeClient(2);
+
+            System.out.println("After deleting client ID 2:");
+            library.displayAllClients();
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        // adding a duplicate book
+        System.out.println();
+        Book duplicateBook = new Book(1, "a book with id 1", 1, "test", "test", 123L);
+        library.addItem(duplicateBook);
+
+        // adding a duplicate client
+        System.out.println();
+        Client duplicateClient = new Client(1, "Existing client", "exists@test.com");
+        library.addClient(duplicateClient);
+
+        try {
+            System.out.println();
+            System.out.println("item 1 available? " + library.isItemAvailable(1));
+            System.out.println("item 3 available? " + library.isItemAvailable(3));
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            System.out.println();
+            library.removeItem(999);
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            System.out.println();
+            Client fakeClient = new Client(999, "Not Found client", "errorrr@test.com");
+            library.updateClient(fakeClient);
+        } catch (ItemNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
     }
 }
